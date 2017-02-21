@@ -7,7 +7,7 @@ LABEL Description="HMS Maven Packer"                                           \
 
 # Install docker 
 RUN set -ex;                                                                   \
-    apk add --update --no-cache docker;                                        \
+    apk add --update --no-cache docker;                                        
 
 # Copy and set entrypoint
 COPY entrypoint /usr/local/bin
