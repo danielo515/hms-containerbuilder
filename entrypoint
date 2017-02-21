@@ -14,7 +14,7 @@ git clone                                                                      \
     -b "$GITHUB_BRANCH"                                                        \
     https://github.com/"$GITHUB_USER"/"$GITHUB_REPO".git                       \
     /srv/"$GITHUB_REPO"
-cd /srv/"$GITHUB_REPO"/"$REPO_DIR
+cd /srv/"$GITHUB_REPO"/"$REPO_DIR"
 
 # Extract artifact name and version from pom.xml
 VERSION=$(xpath -q -e '/project/version/text()' pom.xml)
