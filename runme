@@ -6,4 +6,4 @@ docker run                                                                     \
   -e GITHUB_USER=$GITHUB_USER                                                  \
   -e DOCKERHUB_USER=$DOCKERHUB_USER                                            \
   -e DOCKERHUB_PASS=$DOCKERHUB_PASS                                            \
-  4km3/hms-packer
+  4km3/hms-containerbuilder

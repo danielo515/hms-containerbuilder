@@ -1,9 +1,9 @@
-# hms-packer
+# hms-containerbuilder
 Build a container defined in a git repo and upload to hub.docker.com
 
 ## Building
 ```console
-$ docker build -t 4km3/hms-packer .
+$ docker build -t 4km3/hms-containerbuilder .
 ```
 ## Configuration
 ### Default values
@@ -34,7 +34,7 @@ docker run                                                                     \
   -e GITHUB_USER=$GITHUB_USER                                                  \
   -e DOCKERHUB_USER=$DOCKERHUB_USER                                            \
   -e DOCKERHUB_PASS=$DOCKERHUB_PASS                                            \
-  4km3/hms-packer
+  4km3/hms-containerbuilder
 ```
 Also a runme script is provided for convenience
 
