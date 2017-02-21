@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+docker run                                                                     \
+  --rm                                                                         \
+  -e GITHUB_REPO=$GITHUB_REPO                                                  \
+  -e GITHUB_USER=$GITHUB_USER                                                  \
+  -e DOCKERHUB_USER=$DOCKERHUB_USER                                            \
+  -e DOCKERHUB_PASS=$DOCKERHUB_PASS                                            \
+  4km3/hms-packer

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+: "${GITHUB_REPO?Need a repository name}"
+: "${GITHUB_BRANCH:=master}"
+: "${GITHUB_USER?Need a GitHub username}"
+: "${REPO_DIR:=.}"
+: "${DOCKERHUB_USER?Need a DockerHub user}"
+: "${DOCKERHUB_PASS?Need a DockerHub pass}"
+
+set -xe
+# Clone repo and get inside
+git clone                                                                      \
+    -b "$GITHUB_BRANCH"                                                        \
+    https://github.com/"$GITHUB_USER"/"$GITHUB_REPO".git                       \
+    /srv/"$GITHUB_REPO"
+cd /srv/"$GITHUB_REPO"/"$REPO_DIR
+
+# Build dockerfile defined inside
+docker build -t $DOCKERHUB_USER/$GITHUB_REPO:latest .
+
+# Login to DockerHub and upload the container
+docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+docker push $DOCKERHUB_USER/$GITHUB_REPO:latest .
