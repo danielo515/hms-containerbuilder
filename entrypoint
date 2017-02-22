@@ -34,10 +34,17 @@ mvn $MAVEN_ACCEPTANCE_TEST_TARGET
 
 kill -9 $(</run/$TARGET-$VERSION.pid)
 
+# Prepare rancher-compose.yml
+
+cd /srv/"$GITHUB_REPO"/
+sed -i									\
+    -e "s!@TARGET@!$TARGET!"        					\
+    Dockerfile
+
 # Build dockerfile defined inside
 cd /srv/"$GITHUB_REPO"/
 docker build -t $DOCKERHUB_USER/$GITHUB_REPO:$VERSION .
 
 # Login to DockerHub and upload the container
 docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
-docker push $DOCKERHUB_USER/$GITHUB_REPO:latest .
+docker push $DOCKERHUB_USER/$GITHUB_REPO:$VERSION
