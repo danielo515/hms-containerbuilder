@@ -6,4 +6,6 @@ docker run                                                                     \
   -e GITHUB_USER=$GITHUB_USER                                                  \
   -e DOCKERHUB_USER=$DOCKERHUB_USER                                            \
   -e DOCKERHUB_PASS=$DOCKERHUB_PASS                                            \
+  -e REPO_DIR=$REPO_DIR                                                        \
+  -v /var/run/docker.sock:/var/run/docker.sock                                 \
   4km3/hms-containerbuilder

@@ -21,6 +21,7 @@ VERSION=$(xpath -q -e '/project/version/text()' pom.xml)
 TARGET=$(xpath -q -e '/project/artifactId/text()' pom.xml)
 
 # obtain $version artifact
+cd /srv/"$GITHUB_REPO"/
 wget https://github.com/$GITHUB_USER/$GITHUB_REPO/releases/download/$VERSION/$TARGET-linux-amd64
 
 # Run the java jar with the included jre java
@@ -28,12 +29,13 @@ java -jar $TARGET-linux-amd64 "$@" &
 echo $! > /run/$TARGET-$VERSION.pid
 
 # Perform maven acceptance tests
-cd acceptance-test
+cd /srv/"$GITHUB_REPO"/"$REPO_DIR"/acceptance-test
 mvn $MAVEN_ACCEPTANCE_TEST_TARGET
 
 kill -9 $(</run/$TARGET-$VERSION.pid)
 
 # Build dockerfile defined inside
+cd /srv/"$GITHUB_REPO"/
 docker build -t $DOCKERHUB_USER/$GITHUB_REPO:$VERSION .
 
 # Login to DockerHub and upload the container
