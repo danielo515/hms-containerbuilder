@@ -9,6 +9,5 @@ docker run                                                                     \
   -e DOCKERHUB_USER=$DOCKERHUB_USER                                            \
   -e DOCKERHUB_PASS=$DOCKERHUB_PASS                                            \
   -e MAVEN_ACCEPTANCE_TEST_TARGET=$MAVEN_ACCEPTANCE_TEST_TARGET                \
-  -v $PWD/hosts:/etc/hosts                                                     \
   -v /var/run/docker.sock:/var/run/docker.sock                                 \
   4km3/hms-containerbuilder

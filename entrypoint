@@ -25,6 +25,7 @@ cd /srv/"$GITHUB_REPO"/
 wget https://github.com/$GITHUB_USER/$GITHUB_REPO/releases/download/$VERSION/$TARGET-linux-amd64
 
 # Run the java jar with the included jre java
+echo '127.0.0.1 ari' >> /etc/hosts
 java -jar $TARGET-linux-amd64 "$@" &
 echo $! > /run/$TARGET-$VERSION.pid
 
