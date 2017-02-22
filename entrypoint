@@ -43,8 +43,8 @@ sed -i									\
 
 # Build dockerfile defined inside
 cd /srv/"$GITHUB_REPO"/
-docker build -t $DOCKERHUB_USER/$GITHUB_REPO:$VERSION .
+docker build -t $DOCKERHUB_USER/$TARGET:$VERSION .
 
 # Login to DockerHub and upload the container
 docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
-docker push $DOCKERHUB_USER/$GITHUB_REPO:$VERSION
+docker push $DOCKERHUB_USER/$TARGET:$VERSION
