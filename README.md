@@ -3,7 +3,7 @@ Build a container defined in a git repo and upload to hub.docker.com
 
 ## Building
 ```console
-$ docker build -t 4km3/hms-containerbuilder .
+$ docker build -t danielo515/containerbuilder .
 ```
 ## Configuration
 ### Default values
@@ -17,8 +17,8 @@ $ docker build -t 4km3/hms-containerbuilder .
 ### Recommended values
 By passing these values when running:
 ```text
-GITHUB_REPO=<Repository name containing the Maven project>
-GITHUB_USER=<GitHub username containing the repo>
+GITHUB_REPO=<Repository name containing the project>
+GITHUB_USER=<GitHub username with acces to the repo>
 DOCKERHUB_USER=<DockerHub user> 
 DOCKERHUB_PASS=<DockerHub pass> 
 ```
@@ -34,14 +34,12 @@ docker run                                                                     \
   -e GITHUB_USER=$GITHUB_USER                                                  \
   -e DOCKERHUB_USER=$DOCKERHUB_USER                                            \
   -e DOCKERHUB_PASS=$DOCKERHUB_PASS                                            \
-  4km3/hms-containerbuilder
+  danielo515/containerbuilder
 ```
 Also a runme script is provided for convenience
 
 ## Authors
-pancho horrillo <pancho@pancho.name>
-
-Rodrigo de la Fuente <rodrigo@delafuente.email>
+Danielo Rodríguez
 
 ## Acknowledgements
 Thanks to Raúl Sánchez @rawmind0 for his invaluable guidance!
