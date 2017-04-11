@@ -1,13 +1,13 @@
-FROM rawmind/hms-maven:3.3.9
-MAINTAINER Rodrigo de la Fuente <rodrigo@delafuente.email>
+FROM node:alpine
+MAINTAINER Danielo Rodríguez Rivero <rdanielo@gmail.com>
 
-LABEL Description="HMS Maven Packer"                                           \
-      Vendor="ACME Products"                                                   \
+LABEL Description="NodeJS "                                           \
+      Vendor="Danielo"                                                   \
       Version="1.0"
 
 # Install docker 
 RUN set -ex;                                                                   \
-    apk add --update --no-cache perl-xml-xpath docker;                                        
+    apk add --update --no-cache docker;                                        
 # Copy and set entrypoint
 COPY entrypoint /usr/local/bin
 
