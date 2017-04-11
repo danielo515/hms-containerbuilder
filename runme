@@ -8,5 +8,7 @@ docker run                                                                     \
   -e REPO_DIR=$REPO_DIR                                                        \
   -e DOCKERHUB_USER=$DOCKERHUB_USER                                            \
   -e DOCKERHUB_PASS=$DOCKERHUB_PASS                                            \
+  -e TARGET=$TARGET                                                            \
   -v /var/run/docker.sock:/var/run/docker.sock                                 \
-  4km3/hms-containerbuilder
+
+  danielo515/containerbuilder
