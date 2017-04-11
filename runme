@@ -8,6 +8,5 @@ docker run                                                                     \
   -e REPO_DIR=$REPO_DIR                                                        \
   -e DOCKERHUB_USER=$DOCKERHUB_USER                                            \
   -e DOCKERHUB_PASS=$DOCKERHUB_PASS                                            \
-  -e MAVEN_ACCEPTANCE_TEST_TARGET=$MAVEN_ACCEPTANCE_TEST_TARGET                \
   -v /var/run/docker.sock:/var/run/docker.sock                                 \
   4km3/hms-containerbuilder
