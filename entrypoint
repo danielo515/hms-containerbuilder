@@ -6,7 +6,6 @@
 : "${REPO_DIR:=.}"
 : "${DOCKERHUB_USER?Need a DockerHub user}"
 : "${DOCKERHUB_PASS?Need a DockerHub pass}"
-: "${MAVEN_ACCEPTANCE_TEST_TARGET:=test}"
 
 set -xe
 # Clone repo and get inside
@@ -14,36 +13,17 @@ git clone                                                                      \
     -b "$GITHUB_BRANCH"                                                        \
     https://github.com/"$GITHUB_USER"/"$GITHUB_REPO".git                       \
     /srv/"$GITHUB_REPO"
+
+# Go to the proper subdirectory
 cd /srv/"$GITHUB_REPO"/"$REPO_DIR"
-
-# Extract artifact name and version from pom.xml
-VERSION=$(xpath -q -e '/project/version/text()' pom.xml)
-TARGET=$(xpath -q -e '/project/artifactId/text()' pom.xml)
-
-# obtain $version artifact
-cd /srv/"$GITHUB_REPO"/
-wget https://github.com/$GITHUB_USER/$GITHUB_REPO/releases/download/$VERSION/$TARGET-linux-amd64
-
-# Run the java jar with the included jre java
-echo '127.0.0.1 ari' >> /etc/hosts
-java -jar $TARGET-linux-amd64 "$@" &
-echo $! > /run/$TARGET-$VERSION.pid
-
-# Perform maven acceptance tests
-cd /srv/"$GITHUB_REPO"/"$REPO_DIR"/acceptance-test
-mvn $MAVEN_ACCEPTANCE_TEST_TARGET
-
-kill -9 $(</run/$TARGET-$VERSION.pid)
 
 # Prepare dockerfile
 
-cd /srv/"$GITHUB_REPO"/
 sed -i									\
-    -e "s!@TARGET@!$TARGET!"        					\
+    -e "s!@TARGET@!$TARGET!"        	\
     Dockerfile
 
 # Build dockerfile defined inside
-cd /srv/"$GITHUB_REPO"/
 docker build -t $DOCKERHUB_USER/$TARGET:$VERSION .
 
 # Login to DockerHub and upload the container
